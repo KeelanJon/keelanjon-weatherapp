@@ -6,7 +6,7 @@ weather, in addition to a forcast for the next couple of days.
 
 # Built with
 
-HTML, CSS, Vanilla JavaScript.
+HTML, CSS, SASS, Vanilla JavaScript.
 
 # API
 
