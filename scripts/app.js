@@ -9,6 +9,7 @@ const forecastArea = document.querySelector("#forecastArea");
 let wind = document.querySelector("#windText");
 let temp = document.querySelector("#tempText");
 let humid = document.querySelector("#humidText");
+let feelsText = document.querySelector("#feelsText");
 const theCurDate = document.querySelector("#theDate");
 const theCurCity = document.querySelector("#thecity");
 
@@ -18,20 +19,24 @@ let areaName = "Cardiff";
 
 let sevenDayWeather = [];
 
+let apiKey = "fc7144b3becbb06c3f6b140ad87e055c";
+
 //Overriding the default form sumbittion event to perform custom actions.
 //In addition to prevent the default refresh behaviour.
 theForm.addEventListener("submit", function (event) {
+  //updates the current location text to the entered value
   theCurCity.innerHTML = searchBox.value;
+
+  //Gets data for current day
   getData(searchBox.value);
+  //Gets data for 7 day week
   getGeoLocation(searchBox.value);
 
+  //Preventing the default browser refresh on form submit
   event.preventDefault();
 });
 
-const url =
-  "http://api.openweathermap.org/data/2.5/weather?q=Cardiff&units=metric&appid=fc7144b3becbb06c3f6b140ad87e055c";
-let apiKey = "fc7144b3becbb06c3f6b140ad87e055c";
-
+//Function getData taps into the Open Weather api for current weather.
 function getData(city) {
   console.log("Getting data");
 
@@ -50,6 +55,7 @@ function getData(city) {
     .then((data) => displayData(data));
 }
 
+//Updates the Today card for current weather
 function displayData(data) {
   console.log("This is the data");
   console.log(data);
@@ -60,12 +66,14 @@ function displayData(data) {
   const windSpeed = data.wind.speed;
   const curTemp = data.main.temp;
   const humidity = data.main.humidity;
+  const feelsLikeTemp = data.main.feels_like;
 
-  wind.innerHTML = windSpeed + " m/s";
-  temp.innerHTML = curTemp + " ℃";
+  wind.innerHTML = windSpeed;
+  temp.innerHTML = curTemp + "<span> ℃ </span>";
   humid.innerHTML = humidity;
+  feelsText.innerHTML = feelsLikeTemp;
   weatherImage.src = iconURL;
-  weatherDesc.innerHTML = "Current conditions: " + desc;
+  weatherDesc.innerHTML = desc;
 }
 
 //Google geocoding api used to convert user address input
@@ -84,7 +92,7 @@ function getGeoLocation(city) {
 
   fetch(googleApiUrl).then(function (response) {
     if (response.status !== 200) {
-      console.log("Huston, we have a problem" + response.status);
+      console.log("Houston, we have a problem" + response.status);
       return;
     }
 
@@ -99,6 +107,8 @@ function getGeoLocation(city) {
   });
 }
 
+//Gets the forecast data and then updates the 7 day forecase variable
+//so that the update forcast function can use the data to update the DOM
 function getForcast() {
   console.log("Getting forcast for" + longatude + " " + latitude);
 
@@ -110,7 +120,7 @@ function getForcast() {
 
   fetch(forecastURL).then(function (response) {
     if (response.status !== 200) {
-      console.log("Huston, we have a problem" + response.status);
+      console.log("Houston, we have a problem" + response.status);
       return;
     }
 
@@ -124,11 +134,13 @@ function getForcast() {
   });
 }
 
-//updates the DOM to include the new 7 day forecast results
+//updates the DOM to include the new 7 day forecast result cards
 function updateForecast() {
   //Clear any existing content in the forecast area
   forecastArea.innerHTML = "";
 
+  //Map through the seven day weather variable and
+  //creates new forecast cards based on the values
   sevenDayWeather.map(function (item, index) {
     const cardIconID = item.weather[0].icon;
     let iconURL = "http://openweathermap.org/img/wn/" + cardIconID + "@2x.png";
@@ -140,9 +152,11 @@ function updateForecast() {
     const cardTemps = document.createElement("p");
 
     //Updating the contents and attributes of the cards
+    //using the variables from item
     cardDay.innerHTML = unixConverter(item.dt);
     cardTemps.innerHTML = item.temp.min + "/" + item.temp.max + " ℃";
     cardImage.setAttribute("src", iconURL);
+    newCard.setAttribute("key", index);
     newCard.classList.add("day-card");
     newCard.append(cardDay);
     newCard.append(cardImage);
@@ -162,6 +176,9 @@ function unixConverter(timeStamp) {
   return weekDay;
 }
 
+//Function to start the app upon visiting the page/
+//Upon starting the app will call the default data as Cardiff,
+//and update the date area to the current date.
 function startApp() {
   updateDate();
 
@@ -170,6 +187,8 @@ function startApp() {
   getGeoLocation(areaName);
 }
 
+//Simple function designed to retrieve the current date and use
+//the returned variables to return a string for the date
 function updateDate() {
   const date = new Date();
   const day = date.getUTCDay();
@@ -181,29 +200,6 @@ function updateDate() {
   theCurDate.innerHTML = weekDay + ", " + monthDay;
 
   console.log(weekDay + ", " + monthDay);
-}
-
-/* --------------------------------------------------------*/
-//This area down here is for the current dark theme stuff!
-//Dark theme experimentation
-// let darkTheme = false;
-// const darkModeBtn = document.querySelector("#darkModeBtn");
-
-// darkModeBtn.addEventListener("click", function () {
-//   // toggleTheme();
-//   getGeoLocation();
-// });
-
-function toggleTheme() {
-  if (darkTheme == false) {
-    console.log("Dark theme activated");
-    document.body.style.background = "black";
-    darkTheme = true;
-  } else {
-    console.log("Dark theme DEactivated");
-    document.body.style.background = "blue";
-    darkTheme = false;
-  }
 }
 
 startApp();

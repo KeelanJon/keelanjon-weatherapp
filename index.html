@@ -7,18 +7,29 @@
     <title>Keelan Jon | Weather App</title>
     <link rel="stylesheet" href="/dist/css/style.css" />
     <script src="scripts/app.js" async></script>
+    <script src="scripts/darkTheme.js" async></script>
   </head>
   <body>
-      
+     
+    
+
+  <section class="main color-sect" id="upperContainer">
+    <!----Header for current location and todays date-->
     <header>
-      <h4 id="theDate">Today, 15 Dec</h4>
-      <h3 id="thecity"></h3>
+      <div>
+        <h4 id="theDate">Today, 15 Dec</h4>
+        <h1 id="thecity"></h1>
+      </div>
+      
+      <div>
+        <label class="switch">
+          <input type="checkbox" id="darkModeBtn">
+          <span class="slider round"></span>
+        </label>
+      </div>
     </header>
 
-    <section class="main">
-      <h1>Weather App</h1>
-      <p>Enter a location below to check the weather forecast</p>
-
+    <!------Input area for search-->
       <form id="myForm" class="main-form">
         <input
           type="text"
@@ -27,31 +38,44 @@
           class="city-input"
         />
       </form>
-      <div class="card-area">
-        <div class="weather-card">
+   
+      <!-----The current weatehr large card container--->
+    <div class="card-area box-container" >
+      <div class="weather-card">
+        <img src=""  id="weatherImage" class="weather-image" />
+        <div>
+          <p>Todays Weather</p>
+          <h2 id="tempText">12/24</h3>
           <p id="weatherDesc"></p>
-          <img src=""  id="weatherImage" />
         </div>
       </div>
+    </div>  
+  </section>
 
-      <div class="weather-info">
-        <div>
-          <p>Wind</p>
-          <h3 id="windText">0</h3>
-        </div>
-        <div>
-          <p>Temp</p>
-          <h3 id="tempText">0</h3>
-        </div>
-        <div>
-          <p>Humi</p>
-          <h3 id="humidText">0</h3>
-        </div>
+  <!-----3 Card section, fort Wind, visibility and humidity--->
+  <section class="main bottom-container">
+    <div class="weather-info box-container">
+      <div>
+        <h3 id="windText">0</h3>
+        <p>Wind m/s</p>
       </div>
-      <div class="forecast-area" id="forecastArea">
+      <div>
+        <h3 id="feelsText">0</h3>
+        <p>Feels like</p>
+      </div>
+      <div>
+        <h3 id="humidText">0</h3>
+        <p>Humidity</p>
+      </div>
+    </div>
+
+    <!----Here for the 7 day forecast container----->
+    <div class="forecast-area" id="forecastArea">
+
+    </div>
+  </section>
      
-      </div>
       <!-- <button id="darkModeBtn">Dark Mode</button> -->
-    </section>
-  </body>
+    
+</body>
 </html>

@@ -1,7 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 header {
-  text-align: center;
-  padding: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  text-align: left;
 }
 
 header h3 {
@@ -12,6 +25,62 @@ header h3 {
 header h4 {
   color: #aab5d5;
   font-weight: 400;
+  padding: 0.5rem 0;
+}
+
+.weather-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: left;
+}
+
+.weather-card div {
+  padding-left: 1rem;
+}
+
+.weather-card h2 {
+  padding: 0.5rem 0;
+}
+
+.weather-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+
+.weather-info div {
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.weather-info div p {
+  opacity: 0.5;
+}
+
+.weather-info div h3 {
+  font-size: 2rem;
   padding: 0.5rem 0;
 }
 
@@ -34,18 +103,85 @@ header h4 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background: #94cbff;
   border-radius: 12px;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
   margin: 0.5rem 0;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.day-card p {
+  color: #939bb4;
 }
 
 .day-card img {
-  height: 50px;
-  width: auto;
+  width: 35px;
+  height: auto;
+  -webkit-filter: contrast(200%);
+          filter: contrast(200%);
+}
+
+.day-card-dark p {
+  color: #dedede !important;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #2196f3;
+          box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(33px);
+  transform: translateX(33px);
 }
 
 body,
@@ -82,52 +218,36 @@ body {
           flex-direction: column;
   max-width: 375px;
   margin: auto auto;
+  padding: 1rem 2rem;
   width: 100%;
 }
 
 .main h1 {
-  font-size: 2rem;
-  padding: 0.5rem 0;
+  font-size: 1.5rem;
+  padding: 0;
+  line-height: 0.8;
 }
 
 .main p {
-  font-size: 1rem;
-  padding: 0.5rem;
+  font-size: 0.8rem;
   opacity: 0.8;
 }
 
-.weather-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+.box-container {
+  padding: 0.5rem 1rem;
   background: #ffff;
   border-radius: 12px;
-  padding: 1rem;
+  -webkit-box-shadow: 0px 4px 30px rgba(103, 127, 255, 0.25);
+          box-shadow: 0px 4px 30px rgba(103, 127, 255, 0.25);
 }
 
-.weather-info div {
-  text-align: center;
-  padding: 0.5rem 1rem;
+.bottom-container {
+  margin-top: -10vh;
 }
 
-.weather-info div P {
-  font-size: 0.8rem;
-}
-
-.weather-info div h3 {
-  font-size: 1.5rem;
+.color-sect {
+  background: #ffe49d;
+  padding-bottom: 10vh;
 }
 
 .main-form {
@@ -148,13 +268,9 @@ body {
 
 .card-area {
   width: 100%;
-  padding: 1rem;
-  margin: 1rem;
   border-radius: 12px;
   text-align: center;
   background: #fff;
   width: 100%;
-  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 /*# sourceMappingURL=style.css.map */

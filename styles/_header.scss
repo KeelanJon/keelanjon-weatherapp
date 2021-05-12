@@ -1,6 +1,8 @@
 header {
-  text-align: center;
-  padding: 2rem 0;
+  @include flexBox(center, space-between, row);
+
+  width: 100%;
+  text-align: left;
 
   h3 {
     font-size: 1.5rem;

@@ -2,10 +2,12 @@
 
 //components style imports
 //Tis good practice to keep these seperate
+@import "mixins";
 @import "header";
 @import "fonts";
-@import "mixins";
+
 @import "forecastCards";
+@import "toggleSwitch";
 
 body,
 html,
@@ -28,40 +30,36 @@ body {
 
   max-width: 375px;
   margin: auto auto;
+  padding: 1rem 2rem;
 
   width: 100%;
 
   h1 {
-    font-size: 2rem;
-    padding: 0.5rem 0;
+    font-size: $mediumFont;
+    padding: 0;
+    line-height: 0.8;
   }
 
   p {
-    font-size: 1rem;
-    padding: 0.5rem;
+    font-size: $smallFont;
     opacity: 0.8;
   }
 }
 
-.weather-info {
-  @include flexBox(center, center, row);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-
+.box-container {
+  padding: 0.5rem 1rem;
   background: #ffff;
   border-radius: 12px;
-  padding: 1rem;
+  box-shadow: 0px 4px 30px rgba(103, 127, 255, 0.25);
+}
 
-  div {
-    text-align: center;
-    padding: 0.5rem 1rem;
+.bottom-container {
+  margin-top: -10vh;
+}
 
-    P {
-      font-size: 0.8rem;
-    }
-    h3 {
-      font-size: 1.5rem;
-    }
-  }
+.color-sect {
+  background: #ffe49d;
+  padding-bottom: 10vh;
 }
 
 .main-form {
@@ -81,13 +79,9 @@ body {
 
 .card-area {
   width: 100%;
-  padding: 1rem;
-  margin: 1rem;
-
   border-radius: 12px;
   text-align: center;
 
   background: #fff;
   width: 100%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }

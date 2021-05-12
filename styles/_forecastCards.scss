@@ -1,3 +1,35 @@
+.weather-card {
+  @include flexBox(center, flex-start, row);
+  text-align: left;
+
+  div {
+    padding-left: 1rem;
+  }
+
+  h2 {
+    padding: 0.5rem 0;
+  }
+}
+
+.weather-info {
+  @include flexBox(center, center, row);
+  width: 100%;
+
+  div {
+    text-align: center;
+    padding: 0.5rem 1rem;
+
+    p {
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: 2rem;
+      padding: 0.5rem 0;
+    }
+  }
+}
+
 .forecast-area {
   width: 100%;
   margin: 0.5rem 0;
@@ -6,17 +38,24 @@
 .day-card {
   @include flexBox(center, space-between, row);
 
-  background: #94cbff;
-
   border-radius: 12px;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
   margin: 0.5rem 0;
 
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  p {
+    color: rgb(147, 155, 180);
+  }
 
   img {
-    height: 50px;
-    width: auto;
+    width: 35px;
+    height: auto;
+    filter: contrast(200%);
+  }
+}
+
+.day-card-dark {
+  p {
+    color: hsl(0, 0%, 87%) !important;
   }
 }
