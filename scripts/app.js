@@ -19,7 +19,7 @@ let areaName = "Cardiff";
 
 let sevenDayWeather = [];
 
-let apiKey = "fc7144b3becbb06c3f6b140ad87e055c";
+let apiKey = "";
 
 //Overriding the default form sumbittion event to perform custom actions.
 //In addition to prevent the default refresh behaviour.

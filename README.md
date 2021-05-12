@@ -16,6 +16,11 @@ HTML, CSS, SASS, Vanilla JavaScript.
 - Open Weather App API
   Utilised to obtain live weather data for locations around the world, based on longitude and latitude co-ordinates.
 
+Please note: This app requires an API key from Open Weather App to function. You can visit https://openweathermap.org/api and create a free acount to obtain one.
+
+With your Api key at hand, you'll need to update the api
+variable within app.js line 22, with your personal Api key.
+
 # Contact
 
 - Email: info@keelsdesign.co.uk
