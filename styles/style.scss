@@ -28,7 +28,7 @@ body {
 .main {
   @include flexBox(center, center, column);
 
-  max-width: 375px;
+  max-width: 500px;
   margin: auto auto;
   padding: 1rem 2rem;
 
